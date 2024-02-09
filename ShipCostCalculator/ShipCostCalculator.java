@@ -1,24 +1,35 @@
 import java.util.Scanner;
 
-public class ShipCostCalculator {
+public class ShipCostCalculator
+{
     public static void main(String[] args)
     {
         Scanner in = new Scanner(System.in);
-        int itemPrice = 0;
+        double itemPrice = 0.0;
         double shipping = 0.0;
         System.out.println("Enter the price of you of your item.");
-        itemPrice = in.nextInt();
 
-        if (itemPrice >=100)
+
+        if (in.hasNextDouble())
         {
-            System.out.println("Your item is $" + itemPrice + "." + "You have qualified for free shipping!");
+            itemPrice = in.nextDouble();
 
+            if (itemPrice >= 100)
+            {
+                System.out.println("Your item is $" + itemPrice + "." + "You have qualified for free shipping!");
+            } else if (itemPrice <= 99.99)
+            {
+                shipping = itemPrice * 0.02;
+                System.out.println("Your item is $" + itemPrice + "." + "Your shipping cost is $" + shipping);
+            } else
+            {
+                System.out.println("Please input a valid number greater than zero.");
+            }
         }
+
         else
         {
-            shipping = itemPrice * 0.02;
+            System.out.println("Sorry, please input a valid number.");
         }
-
-            System.out.println("Your item is $" + itemPrice + "." + "Your shipping cost is $" + shipping);
     }
 }
